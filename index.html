@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/spotify.jpg">
+
+    <script src="https://kit.fontawesome.com/4adfaa6656.js" crossorigin="anonymous"></script>
+    <div class="titlecard">
+        <title>Musify</title>
+    </div>
+</head>
+
+<style>
+    html {
+        background-color: black;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x:hidden;
+        /* background: linear-gradient(to right, #335, #000); */
+    }
+    .foot{
+        font-size:10px;
+    }
+    .box-1,
+    .box-2 {
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        border: 7px solid yellow;
+        border-top-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        font-weight: bold;
+        width: 220px;
+        float: left;
+        background: linear-gradient(to top, #335, #000);
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: visible;
+        margin-bottom: 7px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        margin-bottom: 17px;
+        margin-left: 50px;
+    }
+
+    a {
+        text-decoration: none;
+        color: gainsboro;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    a:hover {
+        color: white;
+    }
+
+    i {
+        font-size: 23px;
+        margin-right: 10px;
+    }
+
+    .top {
+        color: white;
+    }
+
+    h2,
+    h4 {
+        margin: 0;
+    }
+
+    h2 {
+        margin-left: 0;
+    }
+
+    span {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .sidebar {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+    }
+
+    .box-2 {
+        height: 458px;
+        text-align: center;
+    }
+
+    .play {
+        margin-top: 17px;
+        margin-left: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .lib {
+        margin-right: 20px;
+    }
+
+    .create {
+        background-color: white;
+        color: black;
+        border-radius: 50px;
+        font-weight: bold;
+        width: 80%;
+        margin: 0 auto;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .create:hover {
+        transform: scale(1.1);
+    }
+
+    .play-box {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        /*border:5px solid orange;*/
+        text-align: center;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .total {
+        display: flex;
+    }
+
+
+    .card-holder {
+        display: flex;
+        flex-direction: row;
+        /* border: 5px solid gray; */
+        border-radius: 30px;
+        flex-wrap: wrap;
+        clear: both;
+        margin-top: 10px;
+        margin-left: 250px;
+        padding: 10px;
+        justify-content: center;
+        /* background: linear-gradient(to top, #335, #000); */
+        background: linear-gradient(to top, #2f034d, #000);
+
+    }
+
+
+
+    .card1 {
+        background-color: burlywood;
+        border: 3px solid lightgreen;
+        height: 350px;
+        width: 230px;
+        margin-top: 17px;
+        overflow: hidden;
+        text-align: center;
+        margin-left: 10px;
+        border-radius: 30px;
+        transition: transform 0.5s ease-in-out;
+        /* Add transition effect */
+        background: linear-gradient(to top, #333, #000);
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    a:hover {
+        cursor: pointer;
+    }
+
+    .card1:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        /* Increase size on hover */
+    }
+
+    #wishes {
+        margin-left: 260px;
+    }
+
+    h3 {
+        color: white;
+        margin-left: 260px;
+    }
+
+    .card1>img {
+        width: 100%;
+        height: 70%;
+    }
+
+    .card1>label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .Login {
+        background-color: white;
+        color: #000;
+    }
+
+    .signUp {
+        background-color: #000;
+        color: gray;
+    }
+
+    .signUp:hover {
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .Login,
+    .signUp {
+        border-radius: 40px;
+        border: none;
+        height: 50px;
+        width: 100px;
+        font-weight: bold;
+        font-size: large;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .Login:hover {
+        transform: scale(1.1);
+    }
+
+    button {
+        border: none;
+    }
+
+    .topcontent {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    .total {
+        display: flex;
+        flex-direction: column;
+        right: 10px;
+        /* Adjusted padding */
+    }
+
+    .topcontent .signUp,
+    .topcontent .Login {
+        margin-right: 10px;
+        /* Adjusted margin to give space */
+    }
+
+    .card1 .bottom-right {
+        display: none;
+    }
+
+    /* Show the play button when card is hovered */
+    .card1:hover .bottom-right {
+        display: block;
+    }
+
+    .bottom-right {
+        font-size: 36px;
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+
+    }
+
+    .show {
+        display: none;
+    }
+
+    #showmore {
+
+        margin-top: 20px;
+        border-radius: 40px;
+        font-size: 19px;
+        border: none;
+        font-weight: bolder;
+        background-color: transparent;
+        color: gray;
+    }
+
+    #showmore:hover {
+        color: white;
+    }
+
+
+    .controlpanel {
+        display: none;
+    }
+
+    .footer {
+        margin-left: 254px;
+        border-radius: 30px;
+        margin-top: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        display: flex;
+        flex-direction:row;
+        align-items:flex-start;
+        font-weight: bold;
+        color: gray;
+        justify-content:space-evenly;
+    }
+
+    .row1,
+    .row2 {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .row3{
+        display:flex;
+        flex-direction:row;
+        margin-left:10px;
+    }
+
+    .headlabel {
+        font-weight: bold;
+        color: white;
+        font-size:large;
+    }
+.foot{
+    font-size:14px;
+    margin-top:7px;
+    margin-bottom:4px;
+}
+    .foot:hover {
+        color: white;
+        cursor:pointer;
+    }.ii{
+        color:gray;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        padding:10px;
+    }
+    .ii:hover{
+        color:white;
+        cursor:pointer;
+    }
+
+    @media screen and (max-width: 600px) {
+        .ii{
+            padding:3px;
+        }
+        .card-holder {
+            margin-top:6px;
+            width: calc(100% - 20px);
+            /* Adjusted width to occupy the entire viewport width */
+            margin: 10px auto;
+            /* Center the card holder horizontally */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Align cards to the center */
+            padding: 10px;
+            border-radius: 30px;
+            background: linear-gradient(to top, #335, #000);
+        }
+
+        .card1 {
+            width: 48%;
+            margin-left: 2px;
+        }
+
+        .sidebar {
+            display: none;
+        }
+
+        .card-holder {
+            width: 100%;
+        }
+
+        .controlpanel {
+            display: flex;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to right, #1a1a1a, #000);
+            position: fixed;
+            width: 100%;
+            justify-content: space-evenly;
+            
+        bottom: 0;
+        top: auto;
+		height:32px;
+    
+        }
+
+        .i1 {
+            text-decoration: none;
+            color: gray;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .i1:hover {
+            color: white;
+        }
+
+        .active {
+            color: white;
+        }
+
+        .home,
+        .search,
+        .logg,
+        .creatplay,
+        .premiu {
+            visibility: hidden;
+            font-size: 15px;
+            width: 100px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            /* transform: translate(-50%); */
+            top: -30px;
+            z-index: 1;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .creatplay,
+        .premiu {
+            font-weight: bold;
+        }
+
+        .active:hover .home {
+            visibility: visible;
+
+        }
+
+        .log:hover .logg {
+            visibility: visible;
+
+        }
+
+        .cplay:hover .creatplay {
+            visibility: visible;
+
+        }
+
+        .premium:hover .premiu {
+            visibility: visible;
+
+        }
+
+        .searc:hover .search {
+            visibility: visible;
+
+        }
+
+        #wishes {
+            margin-left: 10px;
+        }
+
+        h3 {
+            margin-left: 10px;
+        }
+
+        .signUp,
+        .Login {
+            width: 80px;
+            height: 30px;
+        }.footer{
+            margin-left:0px;
+            margin-top:4px;
+    margin-bottom:3px;
+        }.last{
+margin-bottom:10px;
+        }
+
+    }
+</style>
+
+<body>
+    <div class="total">
+        <div class="topcontent">
+            <h2 id="wishes">Good </h2>
+            <div class="buttons-group"><button class="signUp">SignUp</button><button class="Login">Login</button></div>
+        </div>
+        <h3>Featured Playlists</h3>
+        <div class="sidebar">
+            <div class="box-1">
+                <ul>
+                    <li>
+                        <a href="#" class="top">
+                            <i class="fab fa-spotify"></i>
+                            <h2>Newtify</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="top">
+                            <i class="fas fa-house"></i>
+                            <h4>HOME</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-magnifying-glass i"></i>
+                            <h4>SEARCH</h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="box-2">
+                <div class="play"><a href="#"><i class="fa fa-light fa-compact-disc i"></i><span
+                            class="lib">Library</span></a><a href="#"><i class="far fa-plus i"></i></a></div>
+                <div class="play-box"><span>Create Your First Playlist!</span><img class="i"
+                        src="https://i.ibb.co/ZHDqVxJ/Playlist-Emoji.jpg"><button class="create">Create
+                        Playlist</button>
+                    <p>It's easy, we'll help you</p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="card-holder">
+            <div class="card1">
+                <img src="data:image/jpeg;base64,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"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Party Time</label>
+                <p>Saddle up for the best in country music, featuring both classic hits and fresh releases.</p>
+            </div>
+            <div class="card1">
+                <img src="https://i.ibb.co/f4yx9Tb/images-jpeg.jpg"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Hot Hits</label>
+                <p>Explore the vibrant world of Latin music, from reggaeton to salsa and beyond.</p>
+            </div>
+            <div class="card1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdYgdIeG1IZ2rnot2VeM3TIb-1PgA4ofvcEo5iElPySp6_-Kx6dR39s2lzbpOHx7oHRc&usqp=CAU"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Dance Party</label>
+                <p>Dive into the forefront of hip-hop and rap culture with this curated playlist.</p>
+            </div>
+            
+            <div class="card1">
+                <img src="https://i.scdn.co/image/ab67706f00000002154ff625ce056bcc76d0969d"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Travel Vibes</label>
+                <p>Saddle up for the best in country music, featuring both classic hits and fresh releases.</p>
+            </div>
+            
+            <div class="card1">
+                <img src="https://i.ibb.co/Wtzbbcy/download-jpeg-1.jpg"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Unplugged</label>
+                <p>Lift your spirits with feel-good anthems and uplifting tunes for any occasion.</p>
+            </div>
+            <div class="card1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH20Iwueeg8Tny8_it7rRPzUbjXE594Cs4xw&usqp=CAU"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Happy Vibes</label>
+                <p>Find tranquility and serenity with soothing piano melodies perfect for relaxation.</p>
+            </div>
+            <div class="card1">
+                <img src="https://i.ibb.co/bsvj1VN/download-jpeg.jpg"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Hollywood Hits</label>
+                <p>Unwind and chill out with a selection of laid-back tunes and mellow vibes.</p>
+            </div>
+            <div class="card1">
+                <img src="https://i.ibb.co/M6HFDZ3/e4610a9f32af3b7354acb806cd11e1e0.jpg"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>All Out 80s</label>
+                <p>Take a trip down memory lane with the biggest hits from the raddest decade.</p>
+            </div><button id="showmore" onclick="show()">Show more</button>
+            <div class="card1 show">
+                <img src="https://i.scdn.co/image/ab67706f000000026a0a95249aaece388745ef3a"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>LoFi Hits</label>
+                <p>Rock on with timeless classics and iconic tracks from rock 'n' roll history.</p>
+            </div>
+            
+            <div class="card1 show">
+                <img src="https://i.scdn.co/image/ab67706f000000025c34c8a7c743a89ae2f403d5"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Kolywood Themes</label>
+                <p>Spice up your kitchen with a mix of groovy tracks perfect for cooking up a storm.</p>
+            </div>
+            <div class="card1 show">
+                <img src="https://i.scdn.co/image/ab67706f00000002f90bcfbb444b4619629d5fa3"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Millenium Melodies</label>
+                <p>Turn up the volume and get ready to dance with high-energy beats and infectious rhythms.</p>
+            </div>
+            <div class="card1 show">
+                <img src="https://cdn.tunefab.com/assets/Public/home/images/today-top-hits.png"><i
+                    class="fa-regular fa-circle-play bottom-right"></i>
+                <label>Today's Top Hits</label>
+                <p>Stay updated with the latest and hottest tracks from around the world.</p>
+
+            </div>
+
+        </div>
+        <div class="controlpanel"><i class="fas fa-house i1 active">
+                <div class="home">Home</div>
+            </i><i class="fas fa-magnifying-glass i1 searc">
+                <div class="search">Search</div>
+            </i><i class="far fa-plus i1 cplay">
+                <div class="creatplay">Create Playlist</div>
+            </i><i class="fa-solid fa-right-to-bracket i1 log">
+                <div class="logg">Login</div>
+            </i><i class="fab fa-spotify i1 premium">
+                <div class="premiu">Premium</div>
+            </i></div>
+
+        <div class="footer">
+            <div class="row1"><label class="headlabel">Company</label><label class="foot">About</label><label
+                    class="foot">Jobs</label><label class="foot">For
+                    the Record</label></div>
+            <div class="row2"><label class="headlabel">Communities</label><label class="foot">Artists</label><label
+                        class="foot">Developers</label><label class="foot">Advertising</label><label class="foot">Investors</label><label class="foot last">Vendors</label></div>
+                        <div class="row3"><i class="fa-brands fa-instagram ii"></i><i class="fa-brands fa-square-x-twitter ii"></i><i class="fa-brands fa-facebook ii"></i></div>
+        </div>
+        <script>
+            var k = new Date();
+            var h = k.getHours();
+            var wish = document.getElementById("wishes")
+            if (h < 12 && h != 12) {
+                wish.innerHTML += "Morning!"
+            } else if (h >= 12 && h < 16) {
+                wish.innerHTML += "Afternoon!";
+            } else {
+                wish.innerHTML += "Evening!";
+            }
+            function show() {
+                var o = document.getElementsByClassName("show");
+                for (var i = 0; i < o.length; i++) {
+                    o[i].style.display = "block";
+                } var m = document.getElementById("showmore").style.display = "none";
+            }
+        </script>
+</body>
+
+</html>
